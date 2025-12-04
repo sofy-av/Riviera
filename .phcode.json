@@ -1,0 +1,10 @@
+rivieraplayasamara_site/
+├─ index.html
+├─ styles.css
+├─ scripts.js
+├─ assets/
+│  ├─ hero.jpg         (REEMPLAZAR: imagen hero ancha)
+│  ├─ gallery-1.jpg
+│  └─ ... (agregar fotos de la casa)
+└─ README.md
+{}

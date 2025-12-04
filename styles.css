@@ -276,17 +276,72 @@ html {
 input[type="date"]:placeholder-shown {
   border-color: #e6e6e6;
 }
-
-/* Estado inválido = rojo */
-input[type="date"]:invalid {
-  border-color: #e04f4f;
+.form-error {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
-/* Fecha válida seleccionada = verde/teal */
-input[type="date"]:valid {
-  border-color: #0b4e62;
+.invalid-field {
+  border: 2px solid #d9534f !important;
 }
 
+/* Calculator Section */
+.calc-form {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  max-width: 450px;
+  margin-bottom: 2rem;
+}
+
+.calc-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.calc-form input {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 0.3rem;
+}
+
+.calc-result {
+  background: #f8f8f8;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  max-width: 450px;
+}
+
+.calc-error {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.warning {
+  background: #fff4c4;
+  border-left: 4px solid #d1a300;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #5a4800;
+}
+
+.hidden {
+  display: none;
+}
+
+
+.hidden {
+  display: none;
+}
 
 
 /* Footer */
@@ -505,7 +560,7 @@ input[type="date"]:valid {
 }
 
 .cover {
-  background-image: url("Photos/IMG_3532.jpeg");
+  background-image: url("Photos/IMG_3532.webp");
   background-size: cover;     
   background-position: center; 
   background-repeat: no-repeat;
@@ -535,4 +590,109 @@ input[type="date"]:valid {
   text-decoration: none;
   font-weight: 700;
   margin-top: 40px
+}/* ============================
+   POLÍTICAS · EN CARDS
+============================ */
+
+#policies h3 {
+  font-family: var(--font-heading);
+  color: var(--deep-teal);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.policies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.policy-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.policy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+}
+
+.policy-card h4 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--olive);
+  margin-bottom: 0.8rem;
+}
+
+.policy-card ul {
+  padding-left: 1.1rem;
+  margin: 0;
+}
+
+.policy-card ul li {
+  margin-bottom: 0.45rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--charcoal);
+}
+
+.policy-card strong {
+  color: var(--deep-teal);
+}
+
+/* ============================
+   SOCIAL ICONS
+============================ */
+
+#social h3 {
+  text-align: center;
+  font-family: var(--font-heading);
+  color: var(--deep-teal);
+  margin-bottom: 2rem;
+  font-size: 1.9rem;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.2rem;
+  justify-items: center;
+}
+/* Alinear ícono + texto perfectamente centrados */
+.social-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 180px;
+  padding: 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #e8e8e8;
+  text-decoration: none;
+  color: var(--charcoal);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* NUEVO — centra contenido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem; 
+}
+
+.social-card img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.social-card span {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
 }
