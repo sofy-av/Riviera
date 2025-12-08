@@ -1,5 +1,5 @@
 /* ============================================================
-   CONFIGURACIÓN     <!-- HERO 7dec -->
+   CONFIGURACIÓN     <!-- HERO 7dec1 -->
 ============================================================ */
 const HOST_PHONE = "50671628976";
 const FULL_HOUSE = 150000;
@@ -124,37 +124,44 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
 
     const nights = getNights(checkin, checkout);
 
-    // Detectar temporada alta
+    /* ========== DETECCIÓN DE TEMPORADA ALTA ========== */
     let highSeason = false;
     let temp = new Date(checkin);
 
     while (temp < checkout) {
-        if (isHighSeason(temp)) {
-            highSeason = true;
-        }
+        if (isHighSeason(temp)) highSeason = true;
         temp.setDate(temp.getDate() + 1);
     }
 
-    // ======== CALCULAR TARIFA BASE ========
+    /* ========== TARIFA BASE CORRECTA ========== */
     let rate = FULL_HOUSE;
 
     if (highSeason) {
+        // TEMPORADA ALTA — Se obliga Full House
         if (nights < 2) {
             error.textContent = "Durante temporada alta se requieren mínimo 2 noches.";
             return;
         }
-        rate = FULL_HOUSE;
+
+        // 🔥 AUN SI ES TEMPORADA ALTA, SI SON ≥4 NOCHES → APLICA DESCUENTO
+        if (nights >= 4) {
+            rate = FULL_HOUSE_PROMO;
+        } else {
+            rate = FULL_HOUSE;
+        }
+
     } else {
+        // TEMPORADA NORMAL
         if (people < 8) {
             rate = PARTIAL[people] || FULL_HOUSE;
         } else if (nights >= 4) {
-            rate = FULL_HOUSE_PROMO;
+            rate = FULL_HOUSE_PROMO; // 🔥 DESCUENTO DE 15%, FUNCIONANDO
         } else {
             rate = FULL_HOUSE;
         }
     }
 
-    // ======== PERSONAS EXTRA ========
+    /* ========== PERSONAS EXTRA (SE MANTIENE TU LÓGICA ORIGINAL) ========== */
     const extraPeople = Math.max(0, people - 8);
     let extraRate = 0;
 
@@ -169,10 +176,10 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
 
     const extraTotal = extraPeople * extraRate * nights;
 
-    // ======== TOTAL ========
+    /* ========== TOTAL GENERAL ========== */
     const total = nights * rate + extraTotal;
 
-    // ======== MOSTRAR RESULTADO ========
+    /* ========== MOSTRAR RESULTADOS ========== */
     get("calcResult").classList.remove("hidden");
 
     get("rNights").textContent = nights;
@@ -188,9 +195,7 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
         get("rExtra").innerHTML = `
             ₡${extraTotal.toLocaleString()}
             <br>
-            <small>
-                ${extraPeople} personas extra × ₡${extraRate.toLocaleString()} × ${nights} noches
-            </small>
+            <small>${extraPeople} personas extra × ₡${extraRate.toLocaleString()} × ${nights} noches</small>
         `;
     } else {
         get("rExtra").textContent = "₡0";
@@ -198,15 +203,10 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
 
     get("rTotal").textContent = `₡${total.toLocaleString()}`;
 
-   // ... dentro del submit handler de la calculadora, después de calcular:
-localStorage.setItem("calcPeople", people);
-localStorage.setItem("calcCheckin", checkinEl.value);
-localStorage.setItem("calcCheckout", checkoutEl.value);
-
-// Volcar inmediatamente en el formulario de contacto (si existe)
-if (get("people")) get("people").value = people;
-if (get("checkin")) get("checkin").value = checkinEl.value;
-if (get("checkout")) get("checkout").value = checkoutEl.value;
+    /* AUTOCOMPLETAR */
+    localStorage.setItem("calcPeople", people);
+    localStorage.setItem("calcCheckin", checkinEl.value);
+    localStorage.setItem("calcCheckout", checkoutEl.value);
 });
 
 
