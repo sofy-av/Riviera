@@ -1,5 +1,5 @@
 /* ============================================================
-   CONFIGURACIÓN
+   CONFIGURACIÓN     <!-- HERO 7dec -->
 ============================================================ */
 const HOST_PHONE = "50671628976";
 const FULL_HOUSE = 150000;
@@ -198,10 +198,15 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
 
     get("rTotal").textContent = `₡${total.toLocaleString()}`;
 
-    // Guardar autocompletado
-    localStorage.setItem("calcPeople", people);
-    localStorage.setItem("calcCheckin", checkinEl.value);
-    localStorage.setItem("calcCheckout", checkoutEl.value);
+   // ... dentro del submit handler de la calculadora, después de calcular:
+localStorage.setItem("calcPeople", people);
+localStorage.setItem("calcCheckin", checkinEl.value);
+localStorage.setItem("calcCheckout", checkoutEl.value);
+
+// Volcar inmediatamente en el formulario de contacto (si existe)
+if (get("people")) get("people").value = people;
+if (get("checkin")) get("checkin").value = checkinEl.value;
+if (get("checkout")) get("checkout").value = checkoutEl.value;
 });
 
 
@@ -221,7 +226,11 @@ get("calcPeople")?.addEventListener("input", function () {
    AUTOCOMPLETAR FORMULARIO
 ============================================================ */
 window.addEventListener("DOMContentLoaded", () => {
-  if (localStorage.getItem("calcPeople")) get("people").value = localStorage.getItem("calcPeople");
-  if (localStorage.getItem("calcCheckin")) get("checkin").value = localStorage.getItem("calcCheckin");
-  if (localStorage.getItem("calcCheckout")) get("checkout").value = localStorage.getItem("calcCheckout");
+  const savedPeople = localStorage.getItem("calcPeople");
+  const savedCheckin = localStorage.getItem("calcCheckin");
+  const savedCheckout = localStorage.getItem("calcCheckout");
+
+  if (savedPeople && get("people")) get("people").value = savedPeople;
+  if (savedCheckin && get("checkin")) get("checkin").value = savedCheckin;
+  if (savedCheckout && get("checkout")) get("checkout").value = savedCheckout;
 });
