@@ -31,24 +31,26 @@
       </div>
     </header>
 
-   <!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-bg"></div> <!-- FOTO DE FONDO -->
-  <div class="hero-overlay"></div> <!-- DEGRADADO OSCURO -->
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <!-- FOTO DE FONDO -->
+      <div class="hero-overlay"></div>
+      <!-- DEGRADADO OSCURO -->
 
-  <div class="container hero-content">
-    <h2 class="hero-title">Casa cómoda y funcional para 8 personas</h2>
-    <p class="hero-sub">Piscina</p>
-    <p class="hero-sub">A 10 min de Playa Sámara</p>
-    <p class="hero-sub">3 habitaciones</p>
-    <p class="hero-sub">AC en habitaciones · Amplio parqueo</p>
+      <div class="container hero-content">
+        <h2 class="hero-title">Casa cómoda y funcional para 8 personas</h2>
+        <p class="hero-sub">Piscina</p>
+        <p class="hero-sub">A 10 min de Playa Sámara</p>
+        <p class="hero-sub">3 habitaciones</p>
+        <p class="hero-sub">AC en habitaciones · Amplio parqueo</p>
 
-    <div class="hero-actions">
-      <a href="#contact" class="btn-cta large">Reservar ahora</a>
-      <a href="#gallery" class="btn-ghost">Ver galería</a>
-    </div>
-  </div>
-</section>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-cta large">Reservar ahora</a>
+          <a href="#gallery" class="btn-ghost">Ver galería</a>
+        </div>
+      </div>
+    </section>
 
     <!-- SOBRE -->
     <section class="section" id="about">
@@ -69,16 +71,15 @@
             <li><strong>Tel:</strong> (506) 7162 8976</li>
           </ul>
         </div>
-      <div class="host-card">
-  <img src="Photos/Paola.jpeg" alt="Paola Acevedo">
-  <h4>Conoce a tu anfitriona</h4>
-  <p>
-    <strong>Paola Acevedo:</strong> Costarricense. Riviera inició como un proyecto familiar en 2022. Hablamos
-    español, inglés e italiano para facilitar la comunicación con huéspedes internacionales.
-  </p>
-  <a class="btn-ghost" href="#contact">Contactar al anfitrión</a>
-</div>
-
+        <div class="host-card">
+          <img src="Photos/Paola.jpeg" alt="Paola Acevedo" />
+          <h4>Conoce a tu anfitriona</h4>
+          <p>
+            <strong>Paola Acevedo:</strong> Costarricense. Riviera inició como un proyecto familiar en 2022. Hablamos
+            español, inglés e italiano para facilitar la comunicación con huéspedes internacionales.
+          </p>
+          <a class="btn-ghost" href="#contact">Contactar al anfitrión</a>
+        </div>
       </div>
     </section>
     <!-- AMENIDADES -->
@@ -248,6 +249,7 @@
             adicional por consumo de servicios y uso de la propiedad.
           </div>
 
+          <!-- El JS usa submit, así que debe ser un submit -->
           <button type="submit" class="btn-cta">Calcular</button>
         </form>
 
@@ -271,7 +273,7 @@
         <div class="policies-grid">
           <!-- Card 1 -->
           <div class="policy-card">
-            <h4>1. Tarifas generales</h4>
+            <h4>Tarifas generales</h4>
             <ul>
               <li>La tarifa base es de <strong>₡150.000 por noche</strong> en modalidad full house.</li>
               <li>Los precios para grupos más pequeños dependen de la disponibilidad.</li>
@@ -280,7 +282,7 @@
 
           <!-- Card 2 -->
           <div class="policy-card">
-            <h4>2. Temporada alta</h4>
+            <h4>Temporada alta</h4>
             <ul>
               <li>
                 Reserva mínima para <strong>8 personas</strong> del <strong>22 de diciembre al 4 de enero</strong>.
@@ -292,7 +294,7 @@
 
           <!-- Card 3 -->
           <div class="policy-card">
-            <h4>3. Personas o niños adicionales</h4>
+            <h4>Personas o niños adicionales</h4>
             <ul>
               <li><strong>₡10.000 por persona por noche</strong> si traen su propia colchoneta.</li>
               <li>Huéspedes deben traer su propio equipo para dormir.</li>
@@ -301,7 +303,7 @@
 
           <!-- Card 4 -->
           <div class="policy-card">
-            <h4>4. Grupos aún más grandes</h4>
+            <h4>Grupos aún más grandes</h4>
             <ul>
               <li>Opción de <strong>camping dentro de la propiedad</strong>.</li>
               <li><strong>₡8.000 por persona por noche</strong>.</li>
@@ -412,52 +414,55 @@
 
           <!-- DATOS PERSONALES -->
           <div class="form-group">
-            <label
-              >Nombre completo
+            <label>
+              Nombre completo
               <input id="name" type="text" required />
             </label>
           </div>
 
           <div class="form-group">
-            <label
-              >Email
+            <label>
+              Email
               <input id="email" type="email" required />
             </label>
           </div>
 
           <div class="form-group">
-            <label
-              >Teléfono
+            <label>
+              Teléfono
               <input id="phone" type="tel" minlength="8" maxlength="15" required />
             </label>
           </div>
 
           <!-- RESERVA -->
           <div class="form-group">
-            <label
-              >Personas
-              <input id="people" type="number" min="1" max="8" required />
+            <label>
+              Personas
+              <input id="people" type="number" min="1" max="20" required />
             </label>
           </div>
 
           <div class="form-group">
-            <label
-              >Fecha de entrada
+            <label>
+              Fecha de entrada
               <input id="checkin" type="date" required />
             </label>
           </div>
 
           <div class="form-group">
-            <label
-              >Fecha de salida
+            <label>
+              Fecha de salida
               <input id="checkout" type="date" required />
             </label>
           </div>
 
+          <!-- Mensaje de error de fechas — requerido por validateDates() -->
+          <p id="dateError" class="calc-error"></p>
+
           <!-- MENSAJE -->
           <div class="form-group">
-            <label
-              >Mensaje
+            <label>
+              Mensaje
               <textarea id="message" rows="4" placeholder="Escribe algún detalle adicional..."></textarea>
             </label>
           </div>
@@ -475,10 +480,11 @@
         </div>
         <p class="dark-bg">Síguenos en redes · Comparte tu experiencia</p>
         <div class="footer-actions">
-          <a class="cta-out" href="#page-start">Volver arriba</a> <a clase="cta-in" href="#contact" class="btn-cta">Reservar</a>
+          <a class="cta-out" href="#page-start">Volver arriba</a>
+          <a clase="cta-in" href="#contact" class="btn-cta">Reservar</a>
         </div>
       </div>
     </footer>
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
