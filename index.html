@@ -13,6 +13,11 @@
       rel="stylesheet" />
     <!-- ESTILOS -->
     <link rel="stylesheet" href="styles.css" />
+    <!-- CALENDAR -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/google-calendar.global.min.js"></script>
+    <script src="calendar.js"></script>
   </head>
   <body>
     <div id="page-start"></div>
@@ -106,31 +111,33 @@
     <section class="section" id="gallery">
       <div class="container">
         <h3>Galería</h3>
-        <div class="gallery-grid">
-          <img src="Photos/IMG_3532.webp" alt="frente" /> <img src="Photos/IMG_3542.webp" alt="piscina" />
-          <img src="Photos/IMG_3519.webp" alt="mesa" /> <img src="Photos/IMG_3372.webp" alt="fuente" />
-          <img src="Photos/IMG_3380.webp" alt="piscina de noche" />
-          <img src="Photos/IMG_3391.webp" alt="rancho" /> <img src="Photos/IMG_3483.webp" alt="rancho" />
-          <img src="Photos/IMG_3624.webp" alt="cocina rancho" />
-          <img src="Photos/IMG_3569.webp" alt="sillas" />
-          <img src="Photos/IMG_3614.webp" alt="pisicna de día" />
-          <img src="Photos/IMG_3620.webp" alt="piscina" />
-          <img src="Photos/IMG_3546.webp" alt="duchas externas" />
-          <img src="Photos/IMG_3254.webp" alt="principal" />
-          <img src="Photos/IMG_3256.webp" alt="principal" />
-          <img src="Photos/IMG_3257.webp" alt="principal" />
-          <img src="Photos/IMG_3262.webp" alt="baño principal" />
-          <img src="Photos/IMG_3283.webp" alt="cuarto secundario" />
-          <img src="Photos/IMG_3286.webp" alt="cuarto secundario" />
-          <img src="Photos/IMG_3291.webp" alt="cuarto secundario" />
-          <img src="Photos/IMG_3299.webp" alt="cuarto secundario" />
-          <img src="Photos/IMG_3500.webp" alt="baño secundario" />
-          <img src="Photos/IMG_3528.webp" alt="pila" /> <img src="Photos/IMG_3531.webp" alt="pilas" />
-          <img src="Photos/IMG_3557.webp" alt="baño rancho" /> <img src="Photos/IMG_3626.webp" alt="casa" />
-          <img src="Photos/IMG_3537.webp" alt="portón" /> <img src="Photos/IMG_3664.webp" alt="cocina" />
-          <img src="Photos/IMG_3661.webp" alt="cocina y comedor" />
-          <img src="Photos/IMG_3666.webp" alt="refi" /> <img src="Photos/IMG_3646.webp" alt="convivencia" />
-          <img src="Photos/IMG_3658.webp" alt="sala" /> <img src="Photos/IMG_3669.webp" alt="pasillo" />
+        <div class="gallery-carousel">
+          <div class="gallery-track">
+            <img src="Photos/IMG_3532.webp" alt="frente" /> <img src="Photos/IMG_3542.webp" alt="piscina" />
+            <img src="Photos/IMG_3519.webp" alt="mesa" /> <img src="Photos/IMG_3372.webp" alt="fuente" />
+            <img src="Photos/IMG_3380.webp" alt="piscina de noche" />
+            <img src="Photos/IMG_3391.webp" alt="rancho" /> <img src="Photos/IMG_3483.webp" alt="rancho" />
+            <img src="Photos/IMG_3624.webp" alt="cocina rancho" />
+            <img src="Photos/IMG_3569.webp" alt="sillas" />
+            <img src="Photos/IMG_3614.webp" alt="pisicna de día" />
+            <img src="Photos/IMG_3620.webp" alt="piscina" />
+            <img src="Photos/IMG_3546.webp" alt="duchas externas" />
+            <img src="Photos/IMG_3254.webp" alt="principal" />
+            <img src="Photos/IMG_3256.webp" alt="principal" />
+            <img src="Photos/IMG_3257.webp" alt="principal" />
+            <img src="Photos/IMG_3262.webp" alt="baño principal" />
+            <img src="Photos/IMG_3283.webp" alt="cuarto secundario" />
+            <img src="Photos/IMG_3286.webp" alt="cuarto secundario" />
+            <img src="Photos/IMG_3291.webp" alt="cuarto secundario" />
+            <img src="Photos/IMG_3299.webp" alt="cuarto secundario" />
+            <img src="Photos/IMG_3500.webp" alt="baño secundario" />
+            <img src="Photos/IMG_3528.webp" alt="pila" /> <img src="Photos/IMG_3531.webp" alt="pilas" />
+            <img src="Photos/IMG_3557.webp" alt="baño rancho" /> <img src="Photos/IMG_3626.webp" alt="casa" />
+            <img src="Photos/IMG_3537.webp" alt="portón" /> <img src="Photos/IMG_3664.webp" alt="cocina" />
+            <img src="Photos/IMG_3661.webp" alt="cocina y comedor" />
+            <img src="Photos/IMG_3666.webp" alt="refi" /> <img src="Photos/IMG_3646.webp" alt="convivencia" />
+            <img src="Photos/IMG_3658.webp" alt="sala" /> <img src="Photos/IMG_3669.webp" alt="pasillo" />
+          </div>
         </div>
       </div>
     </section>
@@ -158,110 +165,6 @@
             height="350"
             style="border: 0"></iframe>
         </div>
-      </div>
-    </section>
-    <!-- TARIFAS -->
-    <section class="section" id="rates">
-      <div class="container">
-        <h3>Tarifas</h3>
-        <p>Tarifas oficiales según modalidad de hospedaje.</p>
-        <!-- FULL HOUSE -->
-        <h4>Full House (8 pax)</h4>
-        <div class="rates-grid single-grid">
-          <div class="rate-card">
-            <ul>
-              <li><strong>Noche:</strong> ₡150.000</li>
-              <li><strong>Noche x persona:</strong> ₡19.000</li>
-              <li><strong>Promo +3 noches: -15% </strong> ₡127.000</li>
-              <li><strong>Promo x persona: -15% </strong> ₡16.000</li>
-            </ul>
-          </div>
-        </div>
-        <!-- PART HOUSE -->
-        <h4>Part House — Opciones por Habitación</h4>
-        <div class="rates-table-wrapper">
-          <table class="rates-table">
-            <thead>
-              <tr>
-                <th>Opción</th>
-                <th>Noche (₡)</th>
-                <th>Noche x persona (₡)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1 habitación principal (2 pax)</td>
-                <td>₡65.000</td>
-                <td>₡32.500</td>
-              </tr>
-              <tr>
-                <td>1 habitación secundaria (3 pax)</td>
-                <td>₡75.000</td>
-                <td>₡25.000</td>
-              </tr>
-              <tr>
-                <td>1 principal + 1 secundaria (5 pax)</td>
-                <td>₡105.000</td>
-                <td>₡21.000</td>
-              </tr>
-              <tr>
-                <td>2 secundarias (6 pax)</td>
-                <td>₡125.000</td>
-                <td>₡20.833</td>
-              </tr>
-              <tr>
-                <td>3 habitaciones (8 pax)</td>
-                <td>₡150.000</td>
-                <td>₡18.750</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="muted">Las tarifas se expresan en colones costarricenses.</p>
-        <p class="muted">No incluyen el 13% de IVA.</p>
-      </div>
-    </section>
-
-    <section id="calculator" class="section alt">
-      <div class="container">
-        <h3>Calculadora de Tarifas</h3>
-        <p>Ingrese las fechas y la cantidad de huéspedes para calcular el costo total.</p>
-
-        <form id="priceCalcForm" class="calc-form">
-          <label>
-            Fecha de entrada:
-            <input type="date" id="calcCheckin" required />
-          </label>
-
-          <label>
-            Fecha de salida:
-            <input type="date" id="calcCheckout" required />
-          </label>
-
-          <label>
-            Número de huéspedes:
-            <input type="number" id="calcPeople" min="1" max="20" required />
-          </label>
-
-          <div id="extraWarning" class="warning hidden">
-            <strong>IMPORTANTE:</strong> La casa está equipada para 8 personas. Huéspedes adicionales deben traer su
-            propia colchoneta, sleeping o tienda de campaña. Riviera no proporciona equipo para dormir. Se aplica tarifa
-            adicional por consumo de servicios y uso de la propiedad.
-          </div>
-
-          <!-- El JS usa submit, así que debe ser un submit -->
-          <button type="submit" class="btn-cta">Calcular</button>
-        </form>
-
-        <div id="calcResult" class="calc-result hidden">
-          <h4>Resultado</h4>
-          <p><strong>Noches:</strong> <span id="rNights"></span></p>
-          <p><strong>Tarifa por noche:</strong> <span id="rRate"></span></p>
-          <p><strong>Extra por personas adicionales:</strong> <span id="rExtra"></span></p>
-          <p><strong>Total:</strong> <span id="rTotal"></span></p>
-        </div>
-
-        <p id="calcError" class="calc-error"></p>
       </div>
     </section>
 
@@ -408,9 +311,136 @@
           </div>
         </section>
 
+        <!-- TARIFAS -->
+        <section class="section" id="rates">
+          <div class="container">
+            <h3>Tarifas</h3>
+            <p>Tarifas oficiales según modalidad de hospedaje.</p>
+            <!-- FULL HOUSE -->
+            <h4>Full House (8 pax)</h4>
+            <div class="rates-grid single-grid">
+              <div class="rate-card">
+                <ul>
+                  <li><strong>Noche:</strong> ₡150.000</li>
+                  <li><strong>Noche x persona:</strong> ₡19.000</li>
+                  <li><strong>Promo +3 noches: -15% </strong> ₡127.000</li>
+                  <li><strong>Promo x persona: -15% </strong> ₡16.000</li>
+                </ul>
+              </div>
+            </div>
+            <!-- PART HOUSE -->
+            <h4>Part House — Opciones por Habitación</h4>
+            <div class="rates-table-wrapper">
+              <table class="rates-table">
+                <thead>
+                  <tr>
+                    <th>Opción</th>
+                    <th>Noche (₡)</th>
+                    <th>Noche x persona (₡)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1 habitación principal (2 pax)</td>
+                    <td>₡65.000</td>
+                    <td>₡32.500</td>
+                  </tr>
+                  <tr>
+                    <td>1 habitación secundaria (3 pax)</td>
+                    <td>₡75.000</td>
+                    <td>₡25.000</td>
+                  </tr>
+                  <tr>
+                    <td>1 principal + 1 secundaria (5 pax)</td>
+                    <td>₡105.000</td>
+                    <td>₡21.000</td>
+                  </tr>
+                  <tr>
+                    <td>2 secundarias (6 pax)</td>
+                    <td>₡125.000</td>
+                    <td>₡20.833</td>
+                  </tr>
+                  <tr>
+                    <td>3 habitaciones (8 pax)</td>
+                    <td>₡150.000</td>
+                    <td>₡18.750</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="muted">Las tarifas se expresan en colones costarricenses.</p>
+            <p class="muted">No incluyen el 13% de IVA.</p>
+          </div>
+        </section>
+
+        <section id="calculator" class="section alt">
+          <div class="container">
+            <h3>Calculadora de Tarifas</h3>
+            <p>Selecciona tus fechas y calcula el total.</p>
+
+            <!-- CALENDARIO -->
+            <div class="calendar-wrapper">
+              <div id="calendar"></div>
+            </div>
+
+            <div class="calendar-legend">
+              <div class="legend-item">
+                <span class="legend-dot available"></span>
+                <span>Disponible</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot occupied"></span>
+                <span>No disponible (ocupado)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot selected"></span>
+                <span>Seleccionado</span>
+              </div>
+            </div>
+
+            <form id="priceCalcForm" class="calc-form">
+              <label>
+                Fecha de entrada:
+                <input type="date" id="calcCheckin" required />
+              </label>
+
+              <label>
+                Fecha de salida:
+                <input type="date" id="calcCheckout" required />
+              </label>
+
+              <label>
+                Número de huéspedes:
+                <input type="number" id="calcPeople" min="1" max="20" required />
+              </label>
+
+              <div id="extraWarning" class="warning hidden">
+                <strong>IMPORTANTE:</strong> La casa está equipada para 8 personas. Huéspedes adicionales deben traer su
+                propio equipo para dormir.
+              </div>
+
+              <button type="submit" class="btn-cta">Calcular</button>
+            </form>
+
+            <div id="calcResult" class="calc-result hidden">
+              <h4>Resultado</h4>
+              <p><strong>Noches:</strong> <span id="rNights"></span></p>
+              <p><strong>Tarifa por noche:</strong> <span id="rRate"></span></p>
+              <p><strong>Extra por personas:</strong> <span id="rExtra"></span></p>
+              <p><strong>Total:</strong> <span id="rTotal"></span></p>
+            </div>
+
+            <p id="calcError" class="calc-error"></p>
+          </div>
+        </section>
+
         <form id="contactForm" class="contact-form">
           <h4>Solicitar disponibilidad</h4>
-          <p class="form-note">Respondemos normalmente en menos de 30 minutos.</p>
+          <p class="form-note">
+            Al completar sus datos se le brindará un enlace que enviará la informacion a nuestro whatsapp
+            automaticamente.
+          </p>
+          <p class="muted">Normalmente respondemos en menos de 30 minutos.</p>
 
           <!-- DATOS PERSONALES -->
           <div class="form-group">
@@ -481,10 +511,13 @@
         <p class="dark-bg">Síguenos en redes · Comparte tu experiencia</p>
         <div class="footer-actions">
           <a class="cta-out" href="#page-start">Volver arriba</a>
-          <a clase="cta-in" href="#contact" class="btn-cta">Reservar</a>
+          <a class="cta-in btn-cta" href="#contact">Reservar</a>
         </div>
       </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="main.js"></script>
+
+    <!-- Google Calendar plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.11/index.global.min.js"></script>
   </body>
 </html>
