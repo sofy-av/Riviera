@@ -1,15 +1,18 @@
 /* ============================================================
-   CONFIGURACIÓN
+   CONFIGURACIÓN (TARIFAS ACTUALIZADAS)
 ============================================================ */
 const HOST_PHONE = "50671628976";
-const FULL_HOUSE = 150000;
-const FULL_HOUSE_PROMO = 127000;
 
+/* FULL HOUSE */
+const FULL_HOUSE = 120000;
+const FULL_HOUSE_PROMO = 102000; // promo +3 noches
+
+/* PART HOUSE */
 const PARTIAL = {
-    2: 65000,
-    3: 75000,
-    5: 105000,
-    6: 125000
+    2: 52000,
+    3: 60000,
+    5: 84000,
+    6: 100000,
 };
 
 const get = (id) => document.getElementById(id);
@@ -26,12 +29,6 @@ function toLocalDateString(date) {
 
 function getNights(inDate, outDate) {
     return Math.ceil((outDate - inDate) / 86400000);
-}
-
-function isHighSeason(date) {
-    const m = date.getMonth() + 1;
-    const d = date.getDate();
-    return (m === 12 && d >= 22) || (m === 1 && d <= 4);
 }
 
 /* ============================================================
@@ -137,23 +134,23 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
             error.textContent = "Durante temporada alta se requieren mínimo 2 noches.";
             return;
         }
-        rate = nights >= 4 ? FULL_HOUSE_PROMO : FULL_HOUSE;
+        rate = nights >= 3 ? FULL_HOUSE_PROMO : FULL_HOUSE;
     } else {
         if (people < 8) rate = PARTIAL[people] || FULL_HOUSE;
-        else if (nights >= 4) rate = FULL_HOUSE_PROMO;
+        else if (nights >= 3) rate = FULL_HOUSE_PROMO;
     }
 
-    const extraPeople = Math.max(0, people - 8);
-    let extraRate = 0;
+    const MAX_PEOPLE = 15;
+    const EXTRA_RATE = 5000;
 
-    if (people >= 9 && people <= 12) extraRate = 10000;
-    else if (people >= 13 && people <= 18) extraRate = 8000;
-    else if (people > 18) {
-        error.textContent = "El máximo permitido es 18 personas.";
+    const extraPeople = Math.max(0, people - 8);
+
+    if (people > MAX_PEOPLE) {
+        error.textContent = "El máximo permitido es 15 personas.";
         return;
     }
 
-    const total = nights * rate + extraPeople * extraRate * nights;
+    const extraTotal = extraPeople * EXTRA_RATE * nights;
 
     get("calcResult").classList.remove("hidden");
     get("rNights").textContent = nights;
@@ -270,7 +267,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const checkinStr = info.startStr;
             const checkoutStr = toLocalDateString(new Date(info.end));
 
-
             if (get("calcCheckin")) get("calcCheckin").value = checkinStr;
             if (get("calcCheckout")) get("calcCheckout").value = checkoutStr;
             if (get("checkin")) get("checkin").value = checkinStr;
@@ -280,7 +276,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     calendar.render();
 });
-
 
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const mainNav = document.getElementById("mainNav");

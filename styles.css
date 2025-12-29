@@ -206,7 +206,7 @@ a {
     background: var(--soft);
 }
 
-.section.alt2 {
+.section.gold {
     background: var(--gold);
     color: white;
 }
@@ -393,59 +393,95 @@ ol {
     border-radius: 12px;
 }
 
-/* TABLA DE TARIFAS ESTILIZADA */
-.rates-table-wrapper {
-    overflow-x: auto;
-    margin-top: 1rem;
+/* ===== TÍTULOS ===== */
+
+.rates-title {
+  margin: 2.5rem 0 1rem;
+  font-size: 1.25rem;
 }
 
+.rates-title.full {
+  color: var(--sky);
+}
+
+.rates-title.part {
+  color: var(--deep-teal);
+}
+
+/* ===== WRAPPER ===== */
+
+.rates-table-wrapper {
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+/* ===== TABLA BASE ===== */
+
 .rates-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-family: var(--font-sans);
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--font-sans);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .rates-table th,
 .rates-table td {
-    padding: 0.8rem 1rem;
-    text-align: left;
-    border-bottom: 1px solid #eee;
+  padding: 0.8rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--charcoal);
+  border-bottom: 1px solid #eee;
 }
 
-.rates-table thead {
-    background: var(--deep-teal);
-    color: #fff;
-    font-weight: 600;
+/* ===== FULL HOUSE ===== */
+
+.rates-table.full {
+  border: 2px solid var(--sky);
+  background: rgba(10, 124, 111, 0.04);
 }
+
+.rates-table.full thead th {
+  background: var(--sky);
+  color: #fff;
+}
+
+.rates-table.full td {
+  font-size: 1.05rem;
+}
+
+/* ===== PART HOUSE ===== */
+
+.rates-table.part {
+  border: 2px solid var(--deep-teal);
+}
+
+.rates-table.part thead th {
+  background: var(--deep-teal);
+  color: #fff;
+}
+
+/* ===== ESTADOS ===== */
 
 .rates-table tbody tr:nth-child(even) {
-    background: #f9f9f9;
+  background: #f9f9f9;
 }
 
 .rates-table tbody tr:hover {
-    background: #e6f0f4;
-    transition: background 0.2s ease;
+  background: #e6f0f4;
 }
 
-.rates-table th:first-child,
-.rates-table td:first-child {
-    border-left: none;
+/* ===== PROMO ===== */
+
+.promo-row td {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 0.95rem;
 }
 
-.rates-table th:last-child,
-.rates-table td:last-child {
-    border-right: none;
-}
-
-.rates-table td {
-    font-size: 0.95rem;
-    color: var(--charcoal);
-}
 
 /* CONTACT & FORM */
 .contact-form,
