@@ -12,7 +12,7 @@ const PARTIAL = {
     2: 52000,
     3: 60000,
     5: 84000,
-    6: 100000,
+    6: 100000
 };
 
 const get = (id) => document.getElementById(id);
@@ -113,6 +113,11 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
     const checkout = new Date(get("calcCheckout").value);
     const people = parseInt(get("calcPeople").value);
 
+    if (!get("calcCheckin").value || !get("calcCheckout").value || !people) {
+        error.textContent = "Completa todos los campos.";
+        return;
+    }
+
     if (checkout <= checkin) {
         error.textContent = "La fecha de salida debe ser después de la fecha de entrada.";
         return;
@@ -120,44 +125,36 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
 
     const nights = getNights(checkin, checkout);
 
-    let highSeason = false;
-    let temp = new Date(checkin);
-    while (temp < checkout) {
-        if (isHighSeason(temp)) highSeason = true;
-        temp.setDate(temp.getDate() + 1);
-    }
-
     let rate = FULL_HOUSE;
 
-    if (highSeason) {
-        if (nights < 2) {
-            error.textContent = "Durante temporada alta se requieren mínimo 2 noches.";
-            return;
-        }
-        rate = nights >= 3 ? FULL_HOUSE_PROMO : FULL_HOUSE;
-    } else {
-        if (people < 8) rate = PARTIAL[people] || FULL_HOUSE;
-        else if (nights >= 3) rate = FULL_HOUSE_PROMO;
+    // PART HOUSE
+    if (people < 8) {
+        rate = PARTIAL[people] || FULL_HOUSE;
+    }
+    // FULL HOUSE PROMO
+    else if (nights >= 3) {
+        rate = FULL_HOUSE_PROMO;
     }
 
     const MAX_PEOPLE = 15;
     const EXTRA_RATE = 5000;
-
-    const extraPeople = Math.max(0, people - 8);
 
     if (people > MAX_PEOPLE) {
         error.textContent = "El máximo permitido es 15 personas.";
         return;
     }
 
+    const extraPeople = Math.max(0, people - 8);
     const extraTotal = extraPeople * EXTRA_RATE * nights;
+    const total = nights * rate + extraTotal;
 
     get("calcResult").classList.remove("hidden");
     get("rNights").textContent = nights;
     get("rRate").textContent = `₡${rate.toLocaleString()}`;
-    get("rExtra").textContent = `₡${(extraPeople * extraRate * nights).toLocaleString()}`;
+    get("rExtra").textContent = `₡${extraTotal.toLocaleString()}`;
     get("rTotal").textContent = `₡${total.toLocaleString()}`;
 
+    // Persistencia
     localStorage.setItem("calcPeople", people);
     localStorage.setItem("calcCheckin", get("calcCheckin").value);
     localStorage.setItem("calcCheckout", get("calcCheckout").value);
