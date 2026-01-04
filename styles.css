@@ -656,7 +656,7 @@ textarea {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: #3c5111; /* disponible */
+    background: #3796b2; /* disponible */
     color: #fff;
     display: flex;
     align-items: center;
@@ -671,7 +671,7 @@ textarea {
 
 /* seleccionado */
 .fc-day-selected .fc-daygrid-day-number {
-    background: #3796b2 !important;
+    background: #ecbf34 !important;
 }
 
 /* hover solo disponible */
@@ -713,17 +713,17 @@ textarea {
 
 /* Disponible */
 .legend-dot.available {
-    background-color: #3c5111;
+    background-color: #3796b2;
 }
 
 /* No disponible */
 .legend-dot.occupied {
-    background-color: #999;
+    background-color: #53585c;
 }
 
 /* Seleccionado */
 .legend-dot.selected {
-    background-color: #3796b2;
+    background-color: #ecbf34;
 }
 
 

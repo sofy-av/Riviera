@@ -5,14 +5,14 @@ const HOST_PHONE = "50671628976";
 
 /* FULL HOUSE */
 const FULL_HOUSE = 120000;
-const FULL_HOUSE_PROMO = 102000; // promo +3 noches
+const FULL_HOUSE_PROMO = 110000; // promo 3 o más noches
 
 /* PART HOUSE */
 const PARTIAL = {
-    2: 52000,
-    3: 60000,
-    5: 84000,
-    6: 100000
+    2: 60000,
+    3: 75000,
+    5: 95000,
+    6: 110000
 };
 
 const get = (id) => document.getElementById(id);
@@ -99,9 +99,8 @@ Mensaje adicional: ${get("message").value || "N/A"}`;
 
     window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(text)}`, "_blank");
 });
-
 /* ============================================================
-   CALCULADORA
+   CALCULADORA — LÓGICA CORRECTA
 ============================================================ */
 get("priceCalcForm")?.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -109,14 +108,17 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
     const error = get("calcError");
     error.textContent = "";
 
-    const checkin = new Date(get("calcCheckin").value);
-    const checkout = new Date(get("calcCheckout").value);
-    const people = parseInt(get("calcPeople").value);
+    const checkinValue = get("calcCheckin").value;
+    const checkoutValue = get("calcCheckout").value;
+    const people = parseInt(get("calcPeople").value, 10);
 
-    if (!get("calcCheckin").value || !get("calcCheckout").value || !people) {
+    if (!checkinValue || !checkoutValue || !people) {
         error.textContent = "Completa todos los campos.";
         return;
     }
+
+    const checkin = new Date(checkinValue);
+    const checkout = new Date(checkoutValue);
 
     if (checkout <= checkin) {
         error.textContent = "La fecha de salida debe ser después de la fecha de entrada.";
@@ -125,29 +127,45 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
 
     const nights = getNights(checkin, checkout);
 
-    let rate = FULL_HOUSE;
-
-    // PART HOUSE
-    if (people < 8) {
-        rate = PARTIAL[people] || FULL_HOUSE;
-    }
-    // FULL HOUSE PROMO
-    else if (nights >= 3) {
-        rate = FULL_HOUSE_PROMO;
-    }
-
     const MAX_PEOPLE = 15;
-    const EXTRA_RATE = 5000;
+    const EXTRA_RATE = 8000;
 
     if (people > MAX_PEOPLE) {
         error.textContent = "El máximo permitido es 15 personas.";
         return;
     }
 
-    const extraPeople = Math.max(0, people - 8);
+    let rate = 0;
+    let extraPeople = 0;
+
+    /* ===============================
+       ORDEN CORRECTO DE DECISIONES
+    =============================== */
+
+    // 1️⃣ PART HOUSE (< 7 personas)
+    if (people < 7) {
+        rate = PARTIAL[people] || FULL_HOUSE;
+        extraPeople = 0; // nunca hay extras aquí
+    }
+
+    // 2️⃣ FULL HOUSE exacto (7 u 8 personas)
+    else if (people === 7 || people === 8) {
+        rate = nights >= 3 ? FULL_HOUSE_PROMO : FULL_HOUSE;
+        extraPeople = 0;
+    }
+
+    // 3️⃣ FULL HOUSE + EXTRAS (> 8 personas)
+    else {
+        rate = nights >= 3 ? FULL_HOUSE_PROMO : FULL_HOUSE;
+        extraPeople = people - 8;
+    }
+
     const extraTotal = extraPeople * EXTRA_RATE * nights;
     const total = nights * rate + extraTotal;
 
+    /* ===============================
+       MOSTRAR RESULTADO
+    =============================== */
     get("calcResult").classList.remove("hidden");
     get("rNights").textContent = nights;
     get("rRate").textContent = `₡${rate.toLocaleString()}`;
@@ -156,9 +174,10 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
 
     // Persistencia
     localStorage.setItem("calcPeople", people);
-    localStorage.setItem("calcCheckin", get("calcCheckin").value);
-    localStorage.setItem("calcCheckout", get("calcCheckout").value);
+    localStorage.setItem("calcCheckin", checkinValue);
+    localStorage.setItem("calcCheckout", checkoutValue);
 });
+
 
 /* ============================================================
    AUTOCOMPLETAR FORMULARIO
