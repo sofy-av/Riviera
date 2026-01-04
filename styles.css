@@ -68,9 +68,6 @@ a {
 
 /* RESPONSIVE NAVIGATION */
 @media (max-width: 768px) {
-    .main-nav {
-        display: none;
-    }
     #mobileMenuBtn {
         display: block;
         font-size: 1.8rem;
@@ -689,6 +686,11 @@ textarea {
     background: transparent !important;
 }
 
+.fc-bg-event {
+  opacity: 0.9 !important;
+}
+
+
 .calendar-legend {
     display: flex;
     gap: 16px;
@@ -726,10 +728,9 @@ textarea {
     background-color: #ecbf34;
 }
 
-
 @media (max-width: 768px) {
     .main-nav {
-        display: none;
+        display: flex; /* 🔥 CLAVE */
         flex-direction: column;
         gap: 1rem;
         background: white;
@@ -739,9 +740,23 @@ textarea {
         padding: 1rem;
         border-radius: 8px;
         box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
     .main-nav.open {
-        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
     }
 }
+
+
+body.menu-open {
+    overflow: hidden;
+}
+
+

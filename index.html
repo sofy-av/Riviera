@@ -16,9 +16,8 @@
     <!-- CALENDAR -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/google-calendar.global.min.js"></script>
-    <script src="calendar.js"></script>
   </head>
+
   <body>
     <div id="page-start"></div>
     <!-- HEADER -->
@@ -27,7 +26,7 @@
         <a class="brand" href="#top">
           <img src="Photos/logo.webp" alt="Riviera Playa Sámara logo" class="brand-logo" />
         </a>
-        <nav class="main-nav" aria-label="Navegación principal">
+        <nav id="mainNav" class="main-nav" aria-label="Navegación principal">
           <a href="#about">Sobre</a>
           <a href="#amenities">Amenidades</a>
           <a href="#gallery">Galería</a>
@@ -311,85 +310,78 @@
         </div>
       </div>
     </section>
-<!-- TARIFAS -->
-<section class="section" id="rates">
-  <div class="container">
-    <h3>Tarifas</h3>
-    <p>Tarifas oficiales según modalidad de hospedaje.</p>
+    <!-- TARIFAS -->
+    <section class="section" id="rates">
+      <div class="container">
+        <h3>Tarifas</h3>
+        <p>Tarifas oficiales según modalidad de hospedaje.</p>
 
-    <!-- FULL HOUSE -->
-    <h4 class="rates-title full">Full House (7 u 8 personas)</h4>
+        <!-- FULL HOUSE -->
+        <h4 class="rates-title full">Full House (7 u 8 personas)</h4>
 
-    <div class="rates-table-wrapper">
-      <table class="rates-table full">
-        <thead>
-          <tr>
-            <th>Modalidad</th>
-            <th>Noche (₡)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Casa completa (hasta 8 personas)</td>
-            <td>₡120.000</td>
-          </tr>
-          <tr class="promo-row">
-            <td colspan="3">
-              <strong>Promo 3 o más noches:</strong> ₡110.000 por noche
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <div class="rates-table-wrapper">
+          <table class="rates-table full">
+            <thead>
+              <tr>
+                <th>Modalidad</th>
+                <th>Noche (₡)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Casa completa (hasta 8 personas)</td>
+                <td>₡120.000</td>
+              </tr>
+              <tr class="promo-row">
+                <td colspan="2"><strong>Promo 3 o más noches:</strong> ₡110.000 por noche</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-    <p class="muted">
-        
-      Para grupos mayores, se mantiene la tarifa Full House y se suman personas adicionales.
-    </p>
+        <p class="muted">Para grupos mayores, se mantiene la tarifa Full House y se suman personas adicionales.</p>
 
-    <!-- PART HOUSE -->
-    <h4 class="rates-title part">Part House — Opciones por Habitación</h4>
+        <!-- PART HOUSE -->
+        <h4 class="rates-title part">Part House — Opciones por Habitación</h4>
 
-    <div class="rates-table-wrapper">
-      <table class="rates-table part">
-        <thead>
-          <tr>
-            <th>Opción</th>
-            <th>Noche (₡)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1 habitación principal (2 personas)</td>
-            <td>₡60.000</td>
-          </tr>
-          <tr>
-            <td>1 habitación secundaria (3 personas)</td>
-            <td>₡75.000</td>
-          </tr>
-          <tr>
-            <td>1 principal + 1 secundaria (5 personas)</td>
-            <td>₡95.000</td>
-          </tr>
-          <tr>
-            <td>2 secundarias (6 personas)</td>
-            <td>₡110.000</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <div class="rates-table-wrapper">
+          <table class="rates-table part">
+            <thead>
+              <tr>
+                <th>Opción</th>
+                <th>Noche (₡)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1 habitación principal (2 personas)</td>
+                <td>₡60.000</td>
+              </tr>
+              <tr>
+                <td>1 habitación secundaria (3 personas)</td>
+                <td>₡75.000</td>
+              </tr>
+              <tr>
+                <td>1 principal + 1 secundaria (5 personas)</td>
+                <td>₡95.000</td>
+              </tr>
+              <tr>
+                <td>2 secundarias (6 personas)</td>
+                <td>₡110.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-    <p class="muted">
-      La modalidad <strong>Part House</strong> aplica únicamente para grupos de
-      <strong>2 a 6 personas</strong>.  
-      No participan en promociones.
-    </p>
+        <p class="muted">
+          La modalidad <strong>Part House</strong> aplica únicamente para grupos de <strong>2 a 6 personas</strong>. No
+          participan en promociones.
+        </p>
 
-    <p class="muted">Las tarifas se expresan en colones.</p>
-    <p class="muted">No incluyen el 13% de IVA.</p>
-  </div>
-</section>
-
+        <p class="muted">Las tarifas se expresan en colones.</p>
+        <p class="muted">No incluyen el 13% de IVA.</p>
+      </div>
+    </section>
 
     <section id="calculator" class="section alt">
       <div class="container">
@@ -408,13 +400,15 @@
           </div>
           <div class="legend-item">
             <span class="legend-dot occupied"></span>
-            <span>No disponible (ocupado)</span>
+            <span>No disponible </span>
           </div>
           <div class="legend-item">
             <span class="legend-dot selected"></span>
             <span>Seleccionado</span>
           </div>
         </div>
+
+        <p id="calendarError" class="muted hidden">No se pudo cargar la disponibilidad en este momento.</p>
 
         <form id="priceCalcForm" class="calc-form">
           <label>
@@ -451,73 +445,73 @@
         <p id="calcError" class="calc-error"></p>
       </div>
     </section>
-    
-<section class="container">
-    <form id="contactForm" class="contact-form">
-      <h4>Solicitar disponibilidad</h4>
-      <p class="form-note">
-        Al completar sus datos se le brindará un enlace que enviará la informacion a nuestro whatsapp automaticamente.
-      </p>
-      <p class="muted">Normalmente respondemos en menos de 30 minutos.</p>
 
-      <!-- DATOS PERSONALES -->
-      <div class="form-group">
-        <label>
-          Nombre completo
-          <input id="name" type="text" required />
-        </label>
-      </div>
+    <section class="container">
+      <form id="contactForm" class="contact-form">
+        <h4>Solicitar disponibilidad</h4>
+        <p class="form-note">
+          Al completar sus datos se le brindará un enlace que enviará la informacion a nuestro whatsapp automaticamente.
+        </p>
+        <p class="muted">Normalmente respondemos en menos de 30 minutos.</p>
 
-      <div class="form-group">
-        <label>
-          Email
-          <input id="email" type="email" required />
-        </label>
-      </div>
+        <!-- DATOS PERSONALES -->
+        <div class="form-group">
+          <label>
+            Nombre completo
+            <input id="name" type="text" required />
+          </label>
+        </div>
 
-      <div class="form-group">
-        <label>
-          Teléfono
-          <input id="phone" type="tel" minlength="8" maxlength="15" required />
-        </label>
-      </div>
+        <div class="form-group">
+          <label>
+            Email
+            <input id="email" type="email" required />
+          </label>
+        </div>
 
-      <!-- RESERVA -->
-      <div class="form-group">
-        <label>
-          Personas
-          <input id="people" type="number" min="1" max="15" required />
-        </label>
-      </div>
+        <div class="form-group">
+          <label>
+            Teléfono
+            <input id="phone" type="tel" minlength="8" maxlength="15" required />
+          </label>
+        </div>
 
-      <div class="form-group">
-        <label>
-          Fecha de entrada
-          <input id="checkin" type="date" required />
-        </label>
-      </div>
+        <!-- RESERVA -->
+        <div class="form-group">
+          <label>
+            Personas
+            <input id="people" type="number" min="1" max="15" required />
+          </label>
+        </div>
 
-      <div class="form-group">
-        <label>
-          Fecha de salida
-          <input id="checkout" type="date" required />
-        </label>
-      </div>
+        <div class="form-group">
+          <label>
+            Fecha de entrada
+            <input id="checkin" type="date" required />
+          </label>
+        </div>
 
-      <!-- Mensaje de error de fechas — requerido por validateDates() -->
-      <p id="dateError" class="calc-error"></p>
+        <div class="form-group">
+          <label>
+            Fecha de salida
+            <input id="checkout" type="date" required />
+          </label>
+        </div>
 
-      <!-- MENSAJE -->
-      <div class="form-group">
-        <label>
-          Mensaje
-          <textarea id="message" rows="4" placeholder="Escribe algún detalle adicional..."></textarea>
-        </label>
-      </div>
+        <!-- Mensaje de error de fechas — requerido por validateDates() -->
+        <p id="dateError" class="calc-error"></p>
 
-      <button type="submit" class="btn-cta large">Enviar solicitud</button>
-    </form>
-  </section>
+        <!-- MENSAJE -->
+        <div class="form-group">
+          <label>
+            Mensaje
+            <textarea id="message" rows="4" placeholder="Escribe algún detalle adicional..."></textarea>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-cta large">Enviar solicitud</button>
+      </form>
+    </section>
 
     <!-- CONTACTO -->
     <section class="section" id="contact">
@@ -587,8 +581,5 @@
       </div>
     </footer>
     <script src="main.js"></script>
-
-    <!-- Google Calendar plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.11/index.global.min.js"></script>
   </body>
 </html>

@@ -178,7 +178,6 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
     localStorage.setItem("calcCheckout", checkoutValue);
 });
 
-
 /* ============================================================
    AUTOCOMPLETAR FORMULARIO
 ============================================================ */
@@ -234,8 +233,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         duration: { months: 2 },
         locale: "es",
         firstDay: 1,
-        timeZone: TIMEZONE,
+        timeZone: "local",
         selectable: true,
+        selectMirror: true,
         selectOverlap: false,
         height: "auto",
 
@@ -268,6 +268,22 @@ document.addEventListener("DOMContentLoaded", async () => {
             return classes;
         },
 
+        // 👇 live selection
+        selecting(info) {
+            selectedRange = [];
+
+            const cur = new Date(info.start);
+            cur.setHours(0, 0, 0, 0);
+            const end = new Date(info.end);
+            end.setHours(0, 0, 0, 0);
+
+            while (cur < end) {
+                selectedRange.push(toLocalDateString(cur));
+                cur.setDate(cur.getDate() + 1);
+            }
+            calendar.rerenderDates();
+        },
+
         select(info) {
             selectedRange = [];
             const cur = new Date(info.start);
@@ -281,21 +297,49 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
 
             const checkinStr = info.startStr;
-            const checkoutStr = toLocalDateString(new Date(info.end));
+            const checkoutDate = new Date(info.end);
+checkoutDate.setDate(checkoutDate.getDate() - 1);
 
-            if (get("calcCheckin")) get("calcCheckin").value = checkinStr;
-            if (get("calcCheckout")) get("calcCheckout").value = checkoutStr;
-            if (get("checkin")) get("checkin").value = checkinStr;
-            if (get("checkout")) get("checkout").value = checkoutStr;
+if (get("calcCheckin")) get("calcCheckin").value = checkinStr;
+if (get("calcCheckout")) get("calcCheckout").value = toLocalDateString(checkoutDate);
+if (get("checkin")) get("checkin").value = checkinStr;
+if (get("checkout")) get("checkout").value = toLocalDateString(checkoutDate);
+
         }
     });
 
     calendar.render();
 });
 
+/* ============================================================
+   Botón Hamburguesa Mobile
+============================================================ */
+
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const mainNav = document.getElementById("mainNav");
 
-mobileMenuBtn.addEventListener("click", () => {
-    mainNav.classList.toggle("open");
-});
+if (mobileMenuBtn && mainNav) {
+    mobileMenuBtn.addEventListener("click", () => {
+        const isOpen = mainNav.classList.toggle("open");
+        mobileMenuBtn.textContent = isOpen ? "✖" : "☰";
+        document.body.classList.toggle("menu-open", isOpen);
+    });
+
+    // Cerrar al tocar un link
+    mainNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+    });
+
+    // Cerrar al tocar fuera
+    document.addEventListener("click", (e) => {
+        if (mainNav.classList.contains("open") && !mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            closeMenu();
+        }
+    });
+}
+
+function closeMenu() {
+    mainNav.classList.remove("open");
+    mobileMenuBtn.textContent = "☰";
+    document.body.classList.remove("menu-open");
+}
