@@ -436,10 +436,31 @@
 
         <div id="calcResult" class="calc-result hidden">
           <h4>Resultado</h4>
-          <p><strong>Noches:</strong> <span id="rNights"></span></p>
-          <p><strong>Tarifa por noche:</strong> <span id="rRate"></span></p>
-          <p><strong>Extra por personas adicionales:</strong> <span id="rExtra"></span></p>
-          <p><strong>Total:</strong> <span id="rTotal"></span></p>
+
+          <p>
+            <strong>Noches reservadas:</strong>
+            <span id="rNights"></span>
+          </p>
+
+          <p>
+            <strong>Tarifa base por noche:</strong>
+            <span id="rRate"></span>
+          </p>
+
+          <p>
+  <strong>Personas adicionales:</strong>
+  <span id="rExtraPeople"></span> personas extra ×
+  <span id="rExtraNights"></span> noches × ₡8.000 =
+  <span id="rExtra"></span>
+</p>
+
+
+          <p>
+            <strong>Total:</strong>
+            <span id="rTotal"></span>
+          </p>
+
+          <p class="muted">* Si requiere factura electrónica, debe sumarse el 13% de IVA.</p>
         </div>
 
         <p id="calcError" class="calc-error"></p>
@@ -473,28 +494,6 @@
           <label>
             Teléfono
             <input id="phone" type="tel" minlength="8" maxlength="15" required />
-          </label>
-        </div>
-
-        <!-- RESERVA -->
-        <div class="form-group">
-          <label>
-            Personas
-            <input id="people" type="number" min="1" max="15" required />
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>
-            Fecha de entrada
-            <input id="checkin" type="date" required />
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>
-            Fecha de salida
-            <input id="checkout" type="date" required />
           </label>
         </div>
 

@@ -31,6 +31,15 @@ function getNights(inDate, outDate) {
     return Math.ceil((outDate - inDate) / 86400000);
 }
 
+function formatDateES(dateStr) {
+    const date = new Date(dateStr + "T00:00:00");
+    return date.toLocaleDateString("es-CR", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
+}
+
 /* ============================================================
    VALIDACIÓN FECHAS FORMULARIO
 ============================================================ */
@@ -88,17 +97,28 @@ get("contactForm")?.addEventListener("submit", function (e) {
     if (!validateDates()) return alert("Corrige las fechas.");
     if (!validatePhone()) return alert("Teléfono inválido.");
 
+    const totalCalc = localStorage.getItem("calcTotal");
+
+    const people = localStorage.getItem("calcPeople") || get("people").value;
+
+    const checkin = localStorage.getItem("calcCheckin") || get("checkin").value;
+
+    const checkout = localStorage.getItem("calcCheckout") || get("checkout").value;
+
     const text = `Hola, estoy interesado en reservar Riviera.
 Nombre: ${get("name").value}
 Email: ${get("email").value}
 Teléfono: ${get("phone").value}
-Personas: ${get("people").value}
-Entrada: ${get("checkin").value}
-Salida: ${get("checkout").value}
+Personas: ${people}
+Entrada: ${formatDateES(checkin)}
+Salida: ${formatDateES(checkout)}
+Total estimado: ${totalCalc ? "₡" + Number(totalCalc).toLocaleString("es-CR") : "No calculado"}
 Mensaje adicional: ${get("message").value || "N/A"}`;
 
     window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(text)}`, "_blank");
 });
+
+
 /* ============================================================
    CALCULADORA — LÓGICA CORRECTA
 ============================================================ */
@@ -164,27 +184,33 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
     const total = nights * rate + extraTotal;
 
     /* ===============================
-       MOSTRAR RESULTADO
-    =============================== */
+   MOSTRAR RESULTADO
+=============================== */
     get("calcResult").classList.remove("hidden");
+
     get("rNights").textContent = nights;
     get("rRate").textContent = `₡${rate.toLocaleString()}`;
+
+    get("rExtraPeople").textContent = extraPeople;
+    get("rExtraNights").textContent = nights;
     get("rExtra").textContent = `₡${extraTotal.toLocaleString()}`;
+
     get("rTotal").textContent = `₡${total.toLocaleString()}`;
+
+    const extraWarning = get("extraWarning");
+    if (extraWarning) {
+        if (extraPeople > 0) {
+            extraWarning.classList.remove("hidden");
+        } else {
+            extraWarning.classList.add("hidden");
+        }
+    }
 
     // Persistencia
     localStorage.setItem("calcPeople", people);
     localStorage.setItem("calcCheckin", checkinValue);
     localStorage.setItem("calcCheckout", checkoutValue);
-});
-
-/* ============================================================
-   AUTOCOMPLETAR FORMULARIO
-============================================================ */
-window.addEventListener("DOMContentLoaded", () => {
-    if (get("people")) get("people").value = localStorage.getItem("calcPeople") || "";
-    if (get("checkin")) get("checkin").value = localStorage.getItem("calcCheckin") || "";
-    if (get("checkout")) get("checkout").value = localStorage.getItem("calcCheckout") || "";
+    localStorage.setItem("calcTotal", total);
 });
 
 /* ============================================================
@@ -298,13 +324,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const checkinStr = info.startStr;
             const checkoutDate = new Date(info.end);
-checkoutDate.setDate(checkoutDate.getDate() - 1);
+            checkoutDate.setDate(checkoutDate.getDate() - 1);
 
-if (get("calcCheckin")) get("calcCheckin").value = checkinStr;
-if (get("calcCheckout")) get("calcCheckout").value = toLocalDateString(checkoutDate);
-if (get("checkin")) get("checkin").value = checkinStr;
-if (get("checkout")) get("checkout").value = toLocalDateString(checkoutDate);
-
+            if (get("calcCheckin")) get("calcCheckin").value = checkinStr;
+            if (get("calcCheckout")) get("calcCheckout").value = toLocalDateString(checkoutDate);
+            if (get("checkin")) get("checkin").value = checkinStr;
+            if (get("checkout")) get("checkout").value = toLocalDateString(checkoutDate);
         }
     });
 
