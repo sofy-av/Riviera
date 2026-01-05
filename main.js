@@ -94,30 +94,46 @@ function validatePhone() {
 get("contactForm")?.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (!validateDates()) return alert("Corrige las fechas.");
-    if (!validatePhone()) return alert("Teléfono inválido.");
+    if (!validateDates()) {
+        alert("Corrige las fechas");
+        return;
+    }
 
-    const totalCalc = localStorage.getItem("calcTotal");
+    if (!validatePhone()) {
+        alert("Teléfono inválido");
+        return;
+    }
 
-    const people = localStorage.getItem("calcPeople") || get("people").value;
+    const name = get("name").value;
+    const email = get("email").value;
+    const phone = get("phone").value;
+    const message = get("message").value || "N/A";
+
+    const people = localStorage.getItem("calcPeople") ?? get("people").value;
 
     const checkin = localStorage.getItem("calcCheckin") || get("checkin").value;
 
     const checkout = localStorage.getItem("calcCheckout") || get("checkout").value;
 
+    const totalCalc = localStorage.getItem("calcTotal");
+
+    if (!name || !email || !phone || !people || !checkin || !checkout || !totalCalc) {
+        alert("Debes completar todos los datos y calcular la tarifa antes de enviar");
+        return;
+    }
+
     const text = `Hola, estoy interesado en reservar Riviera.
-Nombre: ${get("name").value}
-Email: ${get("email").value}
-Teléfono: ${get("phone").value}
+Nombre: ${name}
+Email: ${email}
+Teléfono: ${phone}
 Personas: ${people}
 Entrada: ${formatDateES(checkin)}
 Salida: ${formatDateES(checkout)}
-Total estimado: ${totalCalc ? "₡" + Number(totalCalc).toLocaleString("es-CR") : "No calculado"}
-Mensaje adicional: ${get("message").value || "N/A"}`;
+Total estimado: ₡${Number(totalCalc).toLocaleString("es-CR")}
+Mensaje adicional: ${message}`;
 
     window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(text)}`, "_blank");
 });
-
 
 /* ============================================================
    CALCULADORA — LÓGICA CORRECTA
@@ -211,6 +227,8 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
     localStorage.setItem("calcCheckin", checkinValue);
     localStorage.setItem("calcCheckout", checkoutValue);
     localStorage.setItem("calcTotal", total);
+    localStorage.setItem("calcDone", "true");
+
 });
 
 /* ============================================================
@@ -219,6 +237,7 @@ get("priceCalcForm")?.addEventListener("submit", function (e) {
 window.blockedDates = new Set();
 
 document.addEventListener("DOMContentLoaded", async () => {
+    localStorage.removeItem("calcDone");
     const calendarEl = get("calendar");
     if (!calendarEl) return;
 
@@ -330,6 +349,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (get("calcCheckout")) get("calcCheckout").value = toLocalDateString(checkoutDate);
             if (get("checkin")) get("checkin").value = checkinStr;
             if (get("checkout")) get("checkout").value = toLocalDateString(checkoutDate);
+            
         }
     });
 

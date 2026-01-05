@@ -437,34 +437,40 @@
         <div id="calcResult" class="calc-result hidden">
           <h4>Resultado</h4>
 
-          <p>
-            <strong>Noches reservadas:</strong>
-            <span id="rNights"></span>
-          </p>
+          <table class="rates-table part">
+            <tbody>
+              <tr>
+                <th>Noches reservadas</th>
+                <td><span id="rNights"></span></td>
+              </tr>
 
-          <p>
-            <strong>Tarifa base por noche:</strong>
-            <span id="rRate"></span>
-          </p>
+              <tr>
+                <th>Tarifa base por noche</th>
+                <td><span id="rRate"></span></td>
+              </tr>
 
-          <p>
-  <strong>Personas adicionales:</strong>
-  <span id="rExtraPeople"></span> personas extra ×
-  <span id="rExtraNights"></span> noches × ₡8.000 =
-  <span id="rExtra"></span>
-</p>
+              <tr>
+                <th>Personas adicionales</th>
+                <td>
+                  <span id="rExtraPeople"></span> personas extra × <span id="rExtraNights"></span> noches × ₡8.000 =
+                  <span id="rExtra"></span>
+                </td>
+              </tr>
 
-
-          <p>
-            <strong>Total:</strong>
-            <span id="rTotal"></span>
-          </p>
-
-          <p class="muted">* Si requiere factura electrónica, debe sumarse el 13% de IVA.</p>
+              <tr>
+                <th>Total</th>
+                <td>
+                  <strong><span id="rTotal"></span></strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <p id="calcError" class="calc-error"></p>
+        <p class="muted">* Si requiere factura electrónica, debe sumarse el 13% de IVA.</p>
       </div>
+
+      <p id="calcError" class="calc-error"></p>
     </section>
 
     <section class="container">
